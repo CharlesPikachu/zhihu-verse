@@ -1,21 +1,9 @@
-<div align="center">
-
-<img src="./assets/favicon.svg" width="88" alt="ZHIHU://VERSE">
-
 # ZHIHU://VERSE
 
 用 Zhihu CLI，把知乎变成一个可以探索、碰撞、游戏和回顾的知识宇宙。
 
 [在线体验](https://charlespikachu.github.io/zhihu-verse/) · [项目介绍](https://www.zhihu.com/question/2068735236100154306/answer/2069250015713875761) · [Zhihu CLI 文档](https://developer.zhihu.com/docs?key=zhihu_cli)  
 [简体中文](./README.md) · [English](./README_EN.md)
-
-<br>
-
-![Stars](https://img.shields.io/github/stars/CharlesPikachu/zhihu-verse?style=flat-square)
-![Forks](https://img.shields.io/github/forks/CharlesPikachu/zhihu-verse?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/CharlesPikachu/zhihu-verse?style=flat-square)
-
-</div>
 
 ---
 
@@ -46,10 +34,7 @@ python -m http.server 4173
 > [!IMPORTANT]
 > Access Secret 属于敏感凭据，请勿提交到仓库、Issue、公开日志或截图中。
 
-<details>
-<summary>浏览器遇到 CORS？</summary>
-
-可以部署 `worker/` 中的 Cloudflare Worker，并在 `config.js` 中填写 Worker 地址：
+如果浏览器直连知乎开放平台遇到 CORS，可以部署 `worker/` 中的 Cloudflare Worker，并在 `config.js` 中填写 Worker 地址：
 
 ```js
 window.ZHIHU_VERSE_CONFIG = {
@@ -58,14 +43,7 @@ window.ZHIHU_VERSE_CONFIG = {
 };
 ```
 
-</details>
-
-<details>
-<summary>部署到 GitHub Pages</summary>
-
-仓库已经包含 `.github/workflows/deploy-pages.yml`。将 Pages Source 设置为 `GitHub Actions` 即可。
-
-</details>
+仓库已经包含 `.github/workflows/deploy-pages.yml`。将 Pages Source 设置为 `GitHub Actions` 即可部署。
 
 ## ✨ 主要功能与效果演示
 
@@ -81,204 +59,80 @@ window.ZHIHU_VERSE_CONFIG = {
 | 💫 `LIVE`<br>热榜超新星 | 把多次热榜快照串成时间序列，观察话题排名变化。 | [▶ MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/8.%20LIVE%20%E2%80%94%20%E7%83%AD%E6%A6%9C%E8%B6%85%E6%96%B0%E6%98%9F.mp4) |
 | 🧰 `TOOLS LAB`<br>PDF / PPT | 将开放平台 PDF 解析与 PPT 生成能力做成可视化操作面板。 | [▶ MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4) |
 
-<details>
-<summary>查看各实验的详细使用方式</summary>
+### 01. 🔭 EXPLORE — 双域探索
 
-<br>
+- 功能：把知乎与全网搜索结果变成可继续展开的空间节点。
+- Zhihu CLI：知乎搜索 · 全网搜索 · 直答
+- 使用方式：输入主题，选择「知乎 / 全网 / 混合」后点击 `LAUNCH`。点击节点查看来源与摘要；`EXPAND` 从当前节点继续探索，`ZHIDA EXPLAIN` 调用直答解释节点。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/1.%20EXPLORE%20%E2%80%94%20%E5%8F%8C%E5%9F%9F%E6%8E%A2%E7%B4%A2.mp4)
 
-<details>
-<summary>01 · 🔭 EXPLORE / 双域探索</summary>
+### 02. ⚛️ COLLIDER — 知识对撞
 
-<br>
+- 功能：寻找两个看似无关概念之间的知识路径。
+- Zhihu CLI：直答 · 知乎搜索
+- 使用方式：输入左右两个概念并点击 `COLLIDE`。系统先生成中间路径，再用知乎搜索补充和验证各个节点。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/2.%20COLLIDER%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%AF%B9%E6%92%9E.mp4)
 
-`功能`  
-把知乎与全网搜索结果变成可继续展开的空间节点。
+### 03. 🕸️ GRAPH — 知识图谱
 
-`Zhihu CLI`  
-知乎搜索 · 全网搜索 · 直答
+- 功能：围绕一个主题自动展开知乎与全网双源知识图谱。
+- Zhihu CLI：直答 · 知乎搜索 · 全网搜索
+- 使用方式：输入主题并选择图谱深度，点击 `BUILD GRAPH`。系统拆分关键分支并补充真实搜索结果，点击节点查看详情和来源。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/3.%20GRAPH%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1.mp4)
 
-`使用方式`  
-输入主题，选择「知乎 / 全网 / 混合」后点击 `LAUNCH`。点击节点查看来源与摘要；`EXPAND` 从当前节点继续探索，`ZHIDA EXPLAIN` 调用直答解释节点。
+### 04. 🧠 ZHIDA ARENA — 直答问答
 
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/1.%20EXPLORE%20%E2%80%94%20%E5%8F%8C%E5%9F%9F%E6%8E%A2%E7%B4%A2.mp4)
+- 功能：从自选主题或个人收藏中动态生成五题知识挑战。
+- Zhihu CLI：直答 · 用户收藏 · 收藏夹列表 · 收藏夹内容
+- 使用方式：选择「自选主题」直接出题，或选择「根据我的收藏」读取当前账号收藏后生成题目；每题即时显示解释、得分和连胜。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/4.%20ZHIDA%20ARENA%20%E2%80%94%20%E7%9B%B4%E7%AD%94%E9%97%AE%E7%AD%94.mp4)
 
-</details>
+### 05. 🏃 RUNNER — 问题跑酷
 
-<details>
-<summary>02 · ⚛️ COLLIDER / 知识对撞</summary>
+- 功能：把知乎热榜和搜索问题变成 Chrome Dino 风格的跑酷障碍。
+- Zhihu CLI：热榜 · 知乎搜索
+- 使用方式：点击 `START / RESTART` 开始。空格 / ↑ / 点击用于跳跃，↓ / S 用于下蹲；`REFRESH QUESTION POOL` 可刷新问题池。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/5.%20RUNNER%20%E2%80%94%20%E9%97%AE%E9%A2%98%E8%B7%91%E9%85%B7.mp4)
 
-<br>
+### 06. 🪐 MY MEMORY — 记忆星球
 
-`功能`  
-寻找两个看似无关概念之间的知识路径。
+- 功能：把个人创作、收藏、收藏夹和关注聚合成可探索的内容星球。
+- Zhihu CLI：用户内容 · 用户关注 · 用户收藏 · 收藏夹列表 · 收藏夹内容 · 直答
+- 使用方式：连接 Access Secret 后点击 `ASSEMBLE PLANET`。`TIME DEPTH` 控制时间范围，`AI THEME SCAN` 用直答概括主要内容主题。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/6.%20MY%20MEMORY%20%E2%80%94%20%E8%AE%B0%E5%BF%86%E6%98%9F%E7%90%83.mp4)
 
-`Zhihu CLI`  
-直答 · 知乎搜索
+### 07. 📅 RECAP — 年度 / 月度回顾
 
-`使用方式`  
-输入左右两个概念并点击 `COLLIDE`。系统先生成中间路径，再用知乎搜索补充和验证各个节点。
+- 功能：根据个人公开创作与收藏生成年度或月度内容回顾。
+- Zhihu CLI：用户内容 · 用户收藏 · 收藏夹内容 · 直答
+- 使用方式：选择年份和月份后点击 `GENERATE`。系统整理时间线、关键词和高光；可用 `ZHIDA COMMENT` 生成简评，并导出 1080 × 2480 PNG 长图。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/7.%20RECAP%20%E2%80%94%20%E5%B9%B4%E5%BA%A6%E6%9C%88%E5%BA%A6%E5%9B%9E%E9%A1%BE.mp4)
 
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/2.%20COLLIDER%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%AF%B9%E6%92%9E.mp4)
+### 08. 💫 LIVE — 热榜超新星
 
-</details>
+- 功能：把多次热榜快照串成时间序列，观察话题排名变化。
+- Zhihu CLI：知乎热榜
+- 使用方式：点击 `SCAN NOW` 保存当前热榜。积累两份以上快照后可观察升降趋势；快速上涨会触发超新星效果，`REPLAY` 可回放历史快照。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/8.%20LIVE%20%E2%80%94%20%E7%83%AD%E6%A6%9C%E8%B6%85%E6%96%B0%E6%98%9F.mp4)
 
-<details>
-<summary>03 · 🕸️ GRAPH / 知识图谱</summary>
+### 09. 🧰 TOOLS LAB — PDF / PPT
 
-<br>
+- 功能：将开放平台 PDF 解析与 PPT 生成能力做成可视化操作面板。
+- Zhihu CLI：PDF 文件上传 · PDF 解析任务 · PPT 生成任务
+- 使用方式：PDF 区选择文件后点击 `UPLOAD + PARSE`；PPT 区输入知乎回答或专栏链接后点击 `CREATE PPT`；两类任务均可用 `CHECK STATUS` 查询状态。
+- Demo：[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4)
 
-`功能`  
-围绕一个主题自动展开知乎与全网双源知识图谱。
-
-`Zhihu CLI`  
-直答 · 知乎搜索 · 全网搜索
-
-`使用方式`  
-输入主题并选择图谱深度，点击 `BUILD GRAPH`。系统拆分关键分支并补充真实搜索结果，点击节点查看详情和来源。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/3.%20GRAPH%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1.mp4)
-
-</details>
-
-<details>
-<summary>04 · 🧠 ZHIDA ARENA / 直答问答</summary>
-
-<br>
-
-`功能`  
-从自选主题或个人收藏中动态生成五题知识挑战。
-
-`Zhihu CLI`  
-直答 · 用户收藏 · 收藏夹列表 · 收藏夹内容
-
-`使用方式`  
-选择「自选主题」直接出题，或选择「根据我的收藏」读取当前账号收藏后生成题目；每题即时显示解释、得分和连胜。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/4.%20ZHIDA%20ARENA%20%E2%80%94%20%E7%9B%B4%E7%AD%94%E9%97%AE%E7%AD%94.mp4)
-
-</details>
-
-<details>
-<summary>05 · 🏃 RUNNER / 问题跑酷</summary>
-
-<br>
-
-`功能`  
-把知乎热榜和搜索问题变成 Chrome Dino 风格的跑酷障碍。
-
-`Zhihu CLI`  
-热榜 · 知乎搜索
-
-`使用方式`  
-点击 `START / RESTART` 开始。空格 / ↑ / 点击用于跳跃，↓ / S 用于下蹲；`REFRESH QUESTION POOL` 可刷新问题池。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/5.%20RUNNER%20%E2%80%94%20%E9%97%AE%E9%A2%98%E8%B7%91%E9%85%B7.mp4)
-
-</details>
-
-<details>
-<summary>06 · 🪐 MY MEMORY / 记忆星球</summary>
-
-<br>
-
-`功能`  
-把个人创作、收藏、收藏夹和关注聚合成可探索的内容星球。
-
-`Zhihu CLI`  
-用户内容 · 用户关注 · 用户收藏 · 收藏夹列表 · 收藏夹内容 · 直答
-
-`使用方式`  
-连接 Access Secret 后点击 `ASSEMBLE PLANET`。`TIME DEPTH` 控制时间范围，`AI THEME SCAN` 用直答概括主要内容主题。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/6.%20MY%20MEMORY%20%E2%80%94%20%E8%AE%B0%E5%BF%86%E6%98%9F%E7%90%83.mp4)
-
-</details>
-
-<details>
-<summary>07 · 📅 RECAP / 年度 / 月度回顾</summary>
-
-<br>
-
-`功能`  
-根据个人公开创作与收藏生成年度或月度内容回顾。
-
-`Zhihu CLI`  
-用户内容 · 用户收藏 · 收藏夹内容 · 直答
-
-`使用方式`  
-选择年份和月份后点击 `GENERATE`。系统整理时间线、关键词和高光；可用 `ZHIDA COMMENT` 生成简评，并导出 1080 × 2480 PNG 长图。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/7.%20RECAP%20%E2%80%94%20%E5%B9%B4%E5%BA%A6%E6%9C%88%E5%BA%A6%E5%9B%9E%E9%A1%BE.mp4)
-
-</details>
-
-<details>
-<summary>08 · 💫 LIVE / 热榜超新星</summary>
-
-<br>
-
-`功能`  
-把多次热榜快照串成时间序列，观察话题排名变化。
-
-`Zhihu CLI`  
-知乎热榜
-
-`使用方式`  
-点击 `SCAN NOW` 保存当前热榜。积累两份以上快照后可观察升降趋势；快速上涨会触发超新星效果，`REPLAY` 可回放历史快照。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/8.%20LIVE%20%E2%80%94%20%E7%83%AD%E6%A6%9C%E8%B6%85%E6%96%B0%E6%98%9F.mp4)
-
-</details>
-
-<details>
-<summary>09 · 🧰 TOOLS LAB / PDF / PPT</summary>
-
-<br>
-
-`功能`  
-将开放平台 PDF 解析与 PPT 生成能力做成可视化操作面板。
-
-`Zhihu CLI`  
-PDF 文件上传 · PDF 解析任务 · PPT 生成任务
-
-`使用方式`  
-PDF 区选择文件后点击 `UPLOAD + PARSE`；PPT 区输入知乎回答或专栏链接后点击 `CREATE PPT`；两类任务均可用 `CHECK STATUS` 查询状态。
-
-`Demo`  
-[▶ 查看 / 下载 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4)
-
-</details>
-
-</details>
 
 ## 🌟 Star History
 
-<div align="center">
-
-[![Star History](https://img.shields.io/badge/Star_History-View_Trend-181717?style=for-the-badge&logo=github)](https://www.repostars.dev/?repos=CharlesPikachu%2Fzhihu-verse&theme=dark)
-
-</div>
+[查看 ZHIHU://VERSE 的 Star History](https://www.star-history.com/?repos=CharlesPikachu%2Fzhihu-verse&type=date&legend=top-left)
 
 ## ☕ 赞助
 
 如果 ZHIHU://VERSE 对你有帮助，可以通过 GitHub Sponsors 或赞赏码支持后续维护。
 
-<div align="center">
-
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-Sponsor-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/CharlesPikachu)
-
-<br><br>
+[GitHub Sponsors](https://github.com/sponsors/CharlesPikachu)
 
 | 微信赞赏码 | 支付宝赞赏码 |
-| :--: | :--: |
-| <img src="https://raw.githubusercontent.com/CharlesPikachu/musicdl/master/.github/pictures/wechat_reward.jpg" width="220" alt="微信赞赏码"> | <img src="https://raw.githubusercontent.com/CharlesPikachu/musicdl/master/.github/pictures/alipay_reward.png" width="220" alt="支付宝赞赏码"> |
-
-</div>
+| :---: | :---: |
+| <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/wechat_reward.jpg" width="260" /> | <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/alipay_reward.png" width="260" /> |
