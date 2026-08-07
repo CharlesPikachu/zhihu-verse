@@ -1,0 +1,6 @@
+name = "zhihu-verse-proxy"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+[vars]
+ALLOWED_ORIGINS = "http://127.0.0.1:4173,http://localhost:4173,https://YOUR_GITHUB_NAME.github.io"

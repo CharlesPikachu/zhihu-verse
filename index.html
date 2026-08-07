@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#02050b" />
+  <meta name="description" content="ZHIHU://VERSE — interactive experiments powered by Zhihu Open Platform." />
+  <title>ZHIHU://VERSE</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./src/styles.css?v=3.7.0" />
+</head>
+<body class="landing">
+  <canvas id="universe"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div id="flash" aria-hidden="true"></div>
+
+  <header class="hud topbar">
+    <button class="brand no-button" data-action="home" aria-label="返回首页">
+      <span class="brand-mark">Z://</span>
+      <span class="brand-text">ZHIHU<span>VERSE</span></span>
+    </button>
+    <div class="telemetry">
+      <span><i class="dot cyan"></i><b id="nodeCount">0000</b> NODES</span>
+      <span><i class="dot violet"></i><b id="edgeCount">0000</b> LINKS</span>
+      <span><i class="dot orange"></i><b id="hotCount">00</b> HOT</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-button" id="helpButton" title="使用说明">?</button>
+      <button class="icon-button" id="soundButton" title="声音">◉</button>
+      <button class="status-chip" id="authButton"><i class="dot" id="authDot"></i><span id="authLabel">OFFLINE / DEMO</span></button>
+    </div>
+  </header>
+
+  <nav class="hud modebar" aria-label="功能导航">
+    <button class="mode active" data-mode="explore"><span>01</span><b>EXPLORE</b><small>双域探索</small></button>
+    <button class="mode" data-mode="collider"><span>02</span><b>COLLIDER</b><small>知识对撞</small></button>
+    <button class="mode" data-mode="graph"><span>03</span><b>GRAPH</b><small>知识图谱</small></button>
+    <button class="mode" data-mode="arena"><span>04</span><b>ZHIDA ARENA</b><small>直答问答</small></button>
+    <button class="mode" data-mode="runner"><span>05</span><b>RUNNER</b><small>问题跑酷</small></button>
+    <button class="mode" data-mode="memory"><span>06</span><b>MY MEMORY</b><small>记忆星球</small></button>
+    <button class="mode" data-mode="recap"><span>07</span><b>RECAP</b><small>年度/月度回顾</small></button>
+    <button class="mode" data-mode="live"><span>08</span><b>LIVE</b><small>热榜超新星</small></button>
+    <button class="mode" data-mode="lab"><span>09</span><b>TOOLS LAB</b><small>PDF / PPT</small></button>
+  </nav>
+
+  <main id="hudRoot">
+    <section class="hero-panel hud" id="heroPanel">
+      <div class="hero-eclipse" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="eyebrow">AN INTERACTIVE ZHIHU OPEN PLATFORM EXPERIMENT</div>
+        <h1>ZHIHU<span>://</span>VERSE</h1>
+        <p>把知乎搜索、直答、热榜和个人数据变成可探索的知识空间、小游戏和时间回顾。</p>
+        <div class="hero-actions">
+          <button class="primary-button" data-action="demo">ENTER DEMO</button>
+          <button class="ghost-button" data-action="connect">CONNECT ZHIHU</button>
+        </div>
+        <div class="hero-feature-row">
+          <span>KNOWLEDGE GRAPH</span><span>ZHIDA QUIZ</span><span>QUESTION RUNNER</span><span>PERSONAL RECAP</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hud command-panel hidden" id="explorePanel">
+      <div class="panel-title"><div><span>DUAL-SOURCE EXPLORER</span><small>搜索结果会成为可继续展开的节点</small></div><button class="info-pill" data-help="explore">怎么玩</button></div>
+      <form id="probeForm" class="command-form">
+        <label class="input-shell"><span class="prompt">›</span><input id="probeInput" maxlength="120" placeholder="输入问题或主题，例如：Transformer 为什么会出现低秩？" autocomplete="off"/><kbd>ENTER</kbd></label>
+        <div class="segmented" id="searchScope"><button type="button" class="active" data-scope="zhihu">知乎</button><button type="button" data-scope="web">全网</button><button type="button" data-scope="both">混合</button></div>
+        <button class="primary-button compact" type="submit">LAUNCH</button>
+      </form>
+      <div class="panel-footnote">点任意节点查看摘要、作者、赞同/评论和来源；EXPAND 会以该节点标题继续搜索。</div>
+    </section>
+
+    <section class="hud command-panel hidden wide" id="colliderPanel">
+      <div class="panel-title"><div><span>KNOWLEDGE COLLIDER</span><small>直答先寻找桥梁，知乎搜索逐节点验证</small></div><button class="info-pill" data-help="collider">怎么玩</button></div>
+      <form id="colliderForm" class="collider-form">
+        <label><small>LEFT CORE</small><input id="leftCore" value="秦始皇" maxlength="40"/></label><div class="collider-symbol">×</div>
+        <label><small>RIGHT CORE</small><input id="rightCore" value="NVIDIA" maxlength="40"/></label>
+        <button class="danger-button" type="submit">COLLIDE</button>
+      </form>
+      <div class="collision-status" id="collisionStatus">READY // 输入两个看起来毫不相关的概念</div>
+    </section>
+
+    <section class="hud command-panel hidden wide" id="graphPanel">
+      <div class="panel-title"><div><span>KNOWLEDGE GRAPH BUILDER</span><small>根主题 → 子主题 → 真实知乎结果</small></div><button class="info-pill" data-help="graph">怎么玩</button></div>
+      <form id="graphForm" class="command-form">
+        <label class="input-shell"><span class="prompt">◎</span><input id="graphInput" value="具身智能安全" maxlength="80"/></label>
+        <label class="mini-select"><span>DEPTH</span><select id="graphDepth"><option value="1">1</option><option value="2" selected>2</option></select></label>
+        <button class="primary-button compact" type="submit">BUILD GRAPH</button>
+      </form>
+      <div class="panel-footnote" id="graphStatus">建议从一个宽主题开始。二层图谱会进一步搜索关键分支，通常生成 20–40 个节点。</div>
+    </section>
+
+    <section class="workspace hud hidden" id="arenaWorkspace">
+      <div class="workspace-head"><div><span class="eyebrow">ZHIDA ARENA</span><h2>和知乎直答打一局知识赛</h2><p>选一个主题，直答生成题目；每题作答后立即解释。</p></div><button class="info-pill" data-help="arena">规则</button></div>
+      <div class="arena-setup" id="arenaSetup"><select id="arenaSource"><option value="topic">自选主题</option><option value="collections">根据我的收藏</option></select><input id="arenaTopic" value="人工智能" maxlength="40"/><select id="arenaDifficulty"><option value="轻松">轻松</option><option value="正常" selected>正常</option><option value="硬核">硬核</option></select><button class="primary-button" id="startArena">START ROUND</button></div>
+      <div class="arena-board hidden" id="arenaBoard">
+        <div class="arena-meta"><span>QUESTION <b id="arenaIndex">1/5</b></span><span>SCORE <b id="arenaScore">0</b></span><span>STREAK <b id="arenaStreak">0</b></span></div>
+        <h3 id="arenaQuestion">...</h3><div class="arena-options" id="arenaOptions"></div><div class="arena-explain" id="arenaExplain"></div>
+        <button class="ghost-button hidden" id="arenaNext">NEXT</button>
+      </div>
+    </section>
+
+    <section class="workspace runner-workspace hud hidden" id="runnerWorkspace">
+      <div class="workspace-head"><div><span class="eyebrow">QUESTION RUNNER</span><h2>把热榜和搜索问题当成障碍物</h2><p>地面问题要跳，空中问题要低头。空格 / ↑ 支持二段跳，↓ / S 下蹲；前几十分只出现地面题，熟悉后才加入空中题。</p></div><div class="runner-score"><span>SCORE <b id="runnerScore">0000</b></span><span>BEST <b id="runnerBest">0000</b></span></div></div>
+      <canvas id="runnerCanvas" width="1100" height="360"></canvas>
+      <div class="runner-controls"><button class="primary-button" id="runnerStart">START / RESTART</button><button class="ghost-button" id="runnerRefresh">REFRESH QUESTION POOL</button><div class="runner-keypad"><button class="runner-action-button" id="runnerJumpBtn">JUMP ×2 <small>SPACE / ↑</small></button><button class="runner-action-button duck" id="runnerDuckBtn">DUCK <small>↓ / S</small></button></div><span id="runnerStatus">READY</span></div>
+    </section>
+
+    <section class="hud command-panel hidden wide" id="memoryPanel">
+      <div class="panel-title"><div><span>PERSONAL MEMORY PLANET</span><small>创作 × 收藏 × 收藏夹 × 关注</small></div><button class="info-pill" data-help="memory">怎么玩</button></div>
+      <div class="memory-controls"><button class="primary-button compact" id="loadMemory">ASSEMBLE PLANET</button><label class="range-wrap"><span>TIME DEPTH</span><input id="timeDepth" type="range" min="0" max="100" value="100"/></label><button class="ghost-button compact" id="memoryAI">AI THEME SCAN</button></div>
+      <div class="memory-stats" id="memoryStats"><span>CREATIONS 0</span><span>COLLECTIONS 0</span><span>FOLLOWEES 0</span><span>SAVED 0</span></div>
+    </section>
+
+    <section class="workspace recap-workspace hud hidden" id="recapWorkspace">
+      <div class="workspace-head"><div><span class="eyebrow">PERSONAL RECAP</span><h2>你的知乎时间切片</h2><p>用 Access Secret 读取本人公开创作与收藏数据，生成年度或月度回顾。</p></div><button class="info-pill" data-help="recap">说明</button></div>
+      <div class="recap-toolbar"><select id="recapYear"></select><select id="recapMonth"><option value="0">全年</option><option value="1">1 月</option><option value="2">2 月</option><option value="3">3 月</option><option value="4">4 月</option><option value="5">5 月</option><option value="6">6 月</option><option value="7">7 月</option><option value="8">8 月</option><option value="9">9 月</option><option value="10">10 月</option><option value="11">11 月</option><option value="12">12 月</option></select><button class="primary-button compact" id="buildRecap">GENERATE</button><button class="ghost-button compact" id="recapAI">ZHIDA COMMENT</button><button class="poster-button compact" id="exportRecap">EXPORT LONG POSTER</button></div>
+      <div class="recap-grid">
+        <div class="recap-card hero-stat"><small>TOTAL SIGNALS</small><strong id="recapTotal">0</strong><span id="recapPeriod">—</span></div>
+        <div class="recap-card"><small>CREATIONS</small><strong id="recapCreations">0</strong><span>公开创作</span></div>
+        <div class="recap-card"><small>SAVED</small><strong id="recapSaved">0</strong><span>收藏内容</span></div>
+        <div class="recap-card"><small>ACTIVE DAY</small><strong id="recapDay">—</strong><span>记录最多的一天</span></div>
+        <div class="recap-chart-card"><div class="card-title">ACTIVITY TIMELINE</div><canvas id="recapChart" width="760" height="180"></canvas></div>
+        <div class="recap-keywords"><div class="card-title">KEYWORD CONSTELLATION</div><div id="recapKeywords"></div></div>
+        <div class="recap-list"><div class="card-title">MEMORY HIGHLIGHTS</div><div id="recapHighlights"></div></div>
+        <div class="recap-comment"><div class="card-title">ZHIDA COMMENT</div><p id="recapComment">点击 ZHIDA COMMENT，让直答基于统计结果写一段简短回顾。</p></div>
+      </div>
+    </section>
+
+    <section class="hud command-panel hidden wide" id="livePanel">
+      <div class="panel-title"><div><span>TRENDING SUPERNOVA ARRAY</span><small>记录热榜快照，观察上升、衰减和掉榜</small></div><button class="info-pill" data-help="live">怎么玩</button></div>
+      <div class="live-controls"><button class="primary-button compact" id="scanHot">SCAN NOW</button><button class="ghost-button compact" id="toggleAutoScan">AUTO: OFF</button><label class="range-wrap grow"><span>REPLAY</span><input id="hotTimeline" type="range" min="0" max="0" value="0"/></label></div>
+      <div class="live-feed" id="liveFeed"><span>NO SNAPSHOT YET</span></div>
+    </section>
+
+    <section class="workspace lab-workspace hud hidden" id="labWorkspace">
+      <div class="workspace-head"><div><span class="eyebrow">TOOLS LAB</span><h2>开放平台的小工具实验室</h2><p>这里直接接 PDF 解析和 PPT 生成任务；需要真实 Access Secret 和对应接口权限。</p></div><button class="info-pill" data-help="lab">说明</button></div>
+      <div class="lab-grid">
+        <div class="lab-card lab-card-pdf">
+          <div class="lab-card-head">
+            <div class="lab-icon"><span>PDF</span></div>
+            <div><span class="lab-kicker">DOCUMENT ENGINE</span><h3>PDF Parse</h3><p>上传 PDF 后创建解析任务，并在同一面板查询处理状态。单文件不超过 100MB。</p></div>
+          </div>
+          <input class="lab-file-input" id="pdfFile" type="file" accept="application/pdf"/>
+          <label class="lab-dropzone" id="pdfDropzone" for="pdfFile" tabindex="0">
+            <span class="dropzone-symbol">⇧</span>
+            <span class="dropzone-copy"><strong>DROP PDF HERE</strong><small>拖入文件，或点击这里选择 PDF</small></span>
+            <span class="dropzone-chip">MAX 100 MB</span>
+          </label>
+          <div class="lab-file-summary" id="pdfFileSummary">
+            <span class="file-state-dot"></span><div><strong id="pdfFileName">NO FILE SELECTED</strong><small id="pdfFileMeta">等待选择本地 PDF</small></div>
+          </div>
+          <div class="lab-actions"><button class="primary-button compact" id="pdfUpload">UPLOAD + PARSE</button><button class="ghost-button compact" id="pdfCheck">CHECK STATUS</button></div>
+          <div class="lab-console" id="pdfConsole" data-state="idle"><div class="lab-console-head"><span><i></i>TASK CONSOLE</span><b id="pdfConsoleState">IDLE</b></div><pre id="pdfOutput">等待任务…</pre></div>
+        </div>
+        <div class="lab-card lab-card-ppt">
+          <div class="lab-card-head">
+            <div class="lab-icon violet"><span>PPT</span></div>
+            <div><span class="lab-kicker violet">SLIDE ENGINE</span><h3>Zhihu → PPT</h3><p>输入知乎回答或文章链接，创建 6–21 页 PPT 生成任务，并随时查询进度。</p></div>
+          </div>
+          <label class="lab-field"><span>RESOURCE URL</span><div class="lab-input-shell"><b>↗</b><input id="pptUrl" placeholder="粘贴知乎回答或专栏文章链接"/></div></label>
+          <div class="lab-ppt-options">
+            <div><span class="lab-option-label">SLIDE COUNT</span><small>6–21 pages</small></div>
+            <div class="pages-stepper"><button type="button" id="pptPagesMinus" aria-label="减少页数">−</button><input id="pptPages" type="number" min="6" max="21" value="12"/><button type="button" id="pptPagesPlus" aria-label="增加页数">＋</button></div>
+          </div>
+          <div class="lab-actions"><button class="primary-button compact" id="pptCreate">CREATE PPT</button><button class="ghost-button compact" id="pptCheck">CHECK STATUS</button></div>
+          <div class="lab-console violet" id="pptConsole" data-state="idle"><div class="lab-console-head"><span><i></i>TASK CONSOLE</span><b id="pptConsoleState">IDLE</b></div><pre id="pptOutput">等待任务…</pre></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="hud detail-drawer" id="detailDrawer">
+    <button class="drawer-close" id="drawerClose">×</button>
+    <div class="drawer-scroll">
+      <div class="drawer-kicker" id="drawerKicker">NODE</div><h2 id="drawerTitle">选择一个节点</h2>
+      <div class="source-badges" id="drawerBadges"></div><p id="drawerSummary">点击宇宙中的节点查看完整信息。</p>
+      <div class="drawer-author" id="drawerAuthor"></div><div class="drawer-metrics" id="drawerMetrics"></div>
+      <div class="drawer-related" id="drawerRelated"></div>
+    </div>
+    <div class="drawer-actions"><button class="primary-button compact" id="expandNode">EXPAND</button><button class="ghost-button compact" id="explainNode">ZHIDA EXPLAIN</button><a class="ghost-button compact" id="openNode" target="_blank" rel="noopener noreferrer">OPEN ON ZHIHU</a></div>
+  </aside>
+
+  <footer class="hud footerbar"><span id="modeHint">拖拽旋转 · 滚轮缩放 · 双击聚焦</span><div class="footer-actions"><span id="transportLabel">DEMO DATA</span><button class="text-button" id="shareButton">CAPTURE</button></div></footer>
+  <div class="mission-toast" id="missionToast"></div>
+  <div class="node-tooltip hud" id="nodeTooltip"><div id="tooltipKind"></div><strong id="tooltipTitle"></strong><p id="tooltipSummary"></p></div>
+
+  <dialog id="authDialog" class="modal auth-dialog"><form method="dialog" id="authForm"><button class="dialog-x" value="cancel">×</button><div class="eyebrow">ZHIHU OPEN PLATFORM</div><h2>连接真实数据</h2><p>填入知乎开放平台 Access Secret 即可。默认只保存在当前页面内存。</p><label class="field"><span>ACCESS SECRET</span><input id="accessSecret" type="password" autocomplete="off"/></label><label class="field"><span>TRANSPORT</span><select id="transportMode"><option value="auto">AUTO</option><option value="direct">DIRECT</option><option value="proxy">WORKER PROXY</option></select></label><label class="field"><span>WORKER URL <em>可选</em></span><input id="proxyUrl" placeholder="https://your-worker.workers.dev"/></label><label class="checkline"><input id="rememberSession" type="checkbox"/>仅在本标签页会话中记住 Access Secret</label><div class="auth-diagnostics" id="authDiagnostics">填写后点击 TEST & CONNECT。</div><div class="dialog-actions"><button class="ghost-button" value="cancel">CANCEL</button><button class="primary-button" id="connectButton" type="button">TEST & CONNECT</button></div></form></dialog>
+
+  <dialog id="helpDialog" class="modal help-dialog"><form method="dialog"><button class="dialog-x" value="cancel">×</button><div class="eyebrow">FLIGHT MANUAL</div><h2 id="helpTitle">怎么玩</h2><div id="helpBody"></div><div class="dialog-actions"><button class="primary-button" value="cancel">GOT IT</button></div></form></dialog>
+
+  <dialog id="shareDialog" class="modal share-dialog"><form method="dialog"><button class="dialog-x" value="cancel">×</button><div class="eyebrow">MISSION CAPTURE</div><h2>生成一张当前状态截图</h2><canvas id="shareCanvas" width="1200" height="675"></canvas><div class="dialog-actions"><button class="ghost-button" value="cancel">CLOSE</button><button class="primary-button" id="saveShare" type="button">SAVE PNG</button></div></form></dialog>
+
+  <script src="./config.js?v=3.7.0"></script>
+  <script src="./src/app.js?v=3.7.0"></script>
+</body>
+</html>
