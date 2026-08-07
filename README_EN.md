@@ -4,7 +4,7 @@
 
 # ZHIHU://VERSE
 
-**An interactive Zhihu playground powered by Zhihu CLI**
+An interactive Zhihu playground powered by Zhihu CLI
 
 Transform search, direct answers, trending topics, personal content, and Open Platform tools into a knowledge universe of interactive experiments, mini-games, and visualizations.
 
@@ -14,7 +14,6 @@ Transform search, direct answers, trending topics, personal content, and Open Pl
 
 [![GitHub Stars](https://img.shields.io/github/stars/CharlesPikachu/zhihu-verse?style=flat-square)](https://github.com/CharlesPikachu/zhihu-verse/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/CharlesPikachu/zhihu-verse?style=flat-square)](https://github.com/CharlesPikachu/zhihu-verse/forks)
-[![License](https://img.shields.io/github/license/CharlesPikachu/zhihu-verse?style=flat-square)](https://github.com/CharlesPikachu/zhihu-verse/blob/main/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/CharlesPikachu/zhihu-verse?style=flat-square)](https://github.com/CharlesPikachu/zhihu-verse/commits/main)
 [![GitHub Pages](https://github.com/CharlesPikachu/zhihu-verse/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/CharlesPikachu/zhihu-verse/actions/workflows/deploy-pages.yml)
 
@@ -22,19 +21,19 @@ Transform search, direct answers, trending topics, personal content, and Open Pl
 
 ## 🌌 About ZHIHU://VERSE
 
-**ZHIHU://VERSE** is more than a collection of isolated API examples. It is an interactive playground built around **Zhihu CLI**, combining Zhihu Search, Web Search, Zhida, Hot List, user content, follows, favorites, collections, PDF parsing, and PPT generation into nine standalone experiments.
+ZHIHU://VERSE is more than a collection of isolated API examples. It is an interactive playground built around Zhihu CLI, combining Zhihu Search, Web Search, Zhida, Hot List, user content, follows, favorites, collections, PDF parsing, and PPT generation into nine standalone experiments.
 
-You can explore the interface immediately in **Demo Mode**, or connect your own **Access Secret** to work with live Zhihu data for search, knowledge-graph construction, personal recaps, collection-based quizzes, trending-topic tracking, and more.
+You can explore the interface immediately in Demo Mode, or connect your own Access Secret to work with live Zhihu data for search, knowledge-graph construction, personal recaps, collection-based quizzes, trending-topic tracking, and more.
 
-- 🌐 **Live Demo:** [https://charlespikachu.github.io/zhihu-verse/](https://charlespikachu.github.io/zhihu-verse/)
-- 📖 **Project introduction and design notes:** [Zhihu answer](https://www.zhihu.com/question/2068735236100154306/answer/2069250015713875761)
-- 🧩 **Zhihu CLI documentation:** [Zhihu Open Platform](https://developer.zhihu.com/docs?key=zhihu_cli)
+- 🌐 Live Demo: [ZHIHU://VERSE](https://charlespikachu.github.io/zhihu-verse/)
+- 📖 Project introduction and design notes: [Zhihu answer](https://www.zhihu.com/question/2068735236100154306/answer/2069250015713875761)
+- 🧩 Zhihu CLI documentation: [Zhihu Open Platform](https://developer.zhihu.com/docs?key=zhihu_cli)
 
 If you find the project useful, a ⭐ Star is always appreciated.
 
 ## 🚀 Run & Access Secret
 
-### Run locally
+(1) Run locally
 
 ```bash
 git clone https://github.com/CharlesPikachu/zhihu-verse.git
@@ -42,28 +41,21 @@ cd zhihu-verse
 python -m http.server 4173
 ```
 
-Then open:
+Then open `http://127.0.0.1:4173`.
 
-```text
-http://127.0.0.1:4173
-```
+(2) Demo Mode
 
-### Demo Mode
+Click "ENTER DEMO" on your first visit to explore the interface without an Access Secret. Demo Mode is intended for quickly previewing the main interactions; connect your own Access Secret to use live Zhihu data.
 
-Click **ENTER DEMO** on your first visit to explore the interface without an Access Secret.
+(3) Connect an Access Secret
 
-Demo Mode is intended for quickly previewing the main interactions. To use live Zhihu data, connect your own Access Secret.
-
-### Connect an Access Secret
-
-Click **OFFLINE / DEMO** in the upper-right corner, or **CONNECT ZHIHU** on the landing page, and enter your **Access Secret**.
+Click "OFFLINE / DEMO" in the upper-right corner, or "CONNECT ZHIHU" on the landing page, and enter your Access Secret.
 
 Endpoints for personal creations, follows, favorites, and collections read the public data associated with the current caller, so ZHIHU://VERSE consistently uses the Access Secret for these capabilities.
 
-> [!IMPORTANT]
 > Treat your Access Secret as a sensitive credential. Do not commit it to a repository or expose it in issues, public logs, or screenshots.
 
-### CORS & Cloudflare Worker
+(4) CORS & Cloudflare Worker
 
 If direct browser requests to the Zhihu Open Platform are blocked by CORS, deploy the Cloudflare Worker in `worker/` and set its URL in `config.js`:
 
@@ -74,103 +66,102 @@ window.ZHIHU_VERSE_CONFIG = {
 };
 ```
 
-### GitHub Pages
+(5) GitHub Pages
 
-The repository already includes `.github/workflows/deploy-pages.yml`.
-
-Set the repository **Pages Source** to **GitHub Actions** to deploy with the existing workflow.
+The repository already includes `.github/workflows/deploy-pages.yml`. Set the repository Pages Source to "GitHub Actions" to deploy with the existing workflow.
 
 ## ✨ Features
 
-### 01. 🔭 EXPLORE — Dual-domain Exploration
+1. 🔭 EXPLORE — Dual-domain Exploration
 
-**Function:** Turn ordinary search results into expandable spatial nodes and explore Zhihu content, web results, and their relationships in one interface.
+   *Function:* Turn ordinary search results into expandable spatial nodes and explore Zhihu content, web results, and their relationships in one interface.
 
-**Zhihu CLI capabilities:** Zhihu Search, Web Search, Zhida.
+   *Zhihu CLI capabilities:* Zhihu Search, Web Search, Zhida.
 
-**Usage:** Enter a question or topic, choose **Zhihu / Web / Mixed**, and click **LAUNCH**. Open a node to inspect its summary, author, engagement metadata, and source; **EXPAND** continues the search from the selected node, while **ZHIDA EXPLAIN** asks Zhida to explain it.
+   *Usage:* Enter a question or topic, choose "Zhihu / Web / Mixed", and click "LAUNCH". Open a node to inspect its summary, author, engagement metadata, and source; "EXPAND" continues the search from the selected node, while "ZHIDA EXPLAIN" asks Zhida to explain it.
 
-### 02. ⚛️ COLLIDER — Knowledge Collider
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/1.%20EXPLORE%20%E2%80%94%20%E5%8F%8C%E5%9F%9F%E6%8E%A2%E7%B4%A2.mp4)
 
-**Function:** Discover an interpretable and verifiable knowledge path between two seemingly unrelated concepts.
+2. ⚛️ COLLIDER — Knowledge Collider
 
-**Zhihu CLI capabilities:** Zhida, Zhihu Search.
+   *Function:* Discover an interpretable and verifiable knowledge path between two seemingly unrelated concepts.
 
-**Usage:** Enter one concept on each side and click **COLLIDE**. Zhida first proposes intermediate connections, then Zhihu Search is used to supplement and verify those intermediate nodes.
+   *Zhihu CLI capabilities:* Zhida, Zhihu Search.
 
-### 03. 🕸️ GRAPH — Knowledge Graph
+   *Usage:* Enter one concept on each side and click "COLLIDE". Zhida first proposes intermediate connections, then Zhihu Search supplements and verifies the intermediate nodes.
 
-**Function:** Automatically build a multi-level knowledge graph around a topic using both Zhihu and web information.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/2.%20COLLIDER%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%AF%B9%E6%92%9E.mp4)
 
-**Zhihu CLI capabilities:** Zhida, Zhihu Search, Web Search.
+3. 🕸️ GRAPH — Knowledge Graph
 
-**Usage:** Enter a topic, choose the graph depth, and click **BUILD GRAPH**. The system first expands several key branches and then attaches real search results to each branch. Click any node to inspect details and sources.
+   *Function:* Automatically build a multi-level knowledge graph around a topic using both Zhihu and web information.
 
-### 04. 🧠 ZHIDA ARENA — Zhida Quiz
+   *Zhihu CLI capabilities:* Zhida, Zhihu Search, Web Search.
 
-**Function:** Dynamically generate a five-question knowledge challenge from a selected topic or the user's favorites, with instant explanations and scoring.
+   *Usage:* Enter a topic, choose the graph depth, and click "BUILD GRAPH". The system first expands several key branches and then attaches real search results to each branch. Click any node to inspect details and sources.
 
-**Zhihu CLI capabilities:** Zhida, user favorites, collection lists, collection content.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/3.%20GRAPH%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1.mp4)
 
-**Usage:** Choose **Custom Topic** and enter a topic, or select **Based on My Favorites** to let the app read the current account's saved content and generate questions with Zhida. Explanations, score, and streak are shown after every answer.
+4. 🧠 ZHIDA ARENA — Zhida Quiz
 
-### 05. 🏃 RUNNER — Question Runner
+   *Function:* Dynamically generate a five-question knowledge challenge from a selected topic or the user's favorites, with instant explanations and scoring.
 
-**Function:** Turn Zhihu Hot List items and search questions into obstacles in a Chrome-Dino-style runner game.
+   *Zhihu CLI capabilities:* Zhida, user favorites, collection lists, collection content.
 
-**Zhihu CLI capabilities:** Hot List, Zhihu Search.
+   *Usage:* Choose "Custom Topic" and enter a topic, or select "Based on My Favorites" to let the app read the current account's saved content and generate questions with Zhida. Explanations, score, and streak are shown after every answer.
 
-**Usage:** Click **START / RESTART**. Jump over ground questions with Space, ↑, or a canvas click; double jumps are supported. Crouch with ↓ or S when a purple airborne question appears. **REFRESH QUESTION POOL** reloads the question set.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/4.%20ZHIDA%20ARENA%20%E2%80%94%20%E7%9B%B4%E7%AD%94%E9%97%AE%E7%AD%94.mp4)
 
-### 06. 🪐 MY MEMORY — Memory Planet
+5. 🏃 RUNNER — Question Runner
 
-**Function:** Aggregate personal creations, favorites, collections, and follows into an explorable personal knowledge planet.
+   *Function:* Turn Zhihu Hot List items and search questions into obstacles in a Chrome-Dino-style runner game.
 
-**Zhihu CLI capabilities:** user content, user follows, user favorites, collection lists, collection content, Zhida.
+   *Zhihu CLI capabilities:* Hot List, Zhihu Search.
 
-**Usage:** Connect an Access Secret and click **ASSEMBLE PLANET**. Adjust the time range with **TIME DEPTH**; **AI THEME SCAN** uses Zhida to summarize the dominant themes in the current content.
+   *Usage:* Click "START / RESTART". Jump over ground questions with Space, ↑, or a canvas click; double jumps are supported. Crouch with ↓ or S when a purple airborne question appears. "REFRESH QUESTION POOL" reloads the question set.
 
-### 07. 📅 RECAP — Yearly / Monthly Recap
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/5.%20RUNNER%20%E2%80%94%20%E9%97%AE%E9%A2%98%E8%B7%91%E9%85%B7.mp4)
 
-**Function:** Generate a yearly or monthly recap from public creations and favorite data, with support for exporting a shareable long poster.
+6. 🪐 MY MEMORY — Memory Planet
 
-**Zhihu CLI capabilities:** user content, user favorites, collection content, Zhida.
+   *Function:* Aggregate personal creations, favorites, collections, and follows into an explorable personal knowledge planet.
 
-**Usage:** Choose a year and month, then click **GENERATE**. The page builds an activity timeline, keywords, and highlights; **ZHIDA COMMENT** generates a short recap, and **EXPORT LONG POSTER** exports a 1080 × 2480 PNG poster.
+   *Zhihu CLI capabilities:* User content, user follows, user favorites, collection lists, collection content, Zhida.
 
-### 08. 💫 LIVE — Hot List Supernova
+   *Usage:* Connect an Access Secret and click "ASSEMBLE PLANET". Adjust the time range with "TIME DEPTH"; "AI THEME SCAN" uses Zhida to summarize the dominant themes in the current content.
 
-**Function:** Connect multiple Hot List snapshots into a time series to reveal ranking changes and fast-rising topics.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/6.%20MY%20MEMORY%20%E2%80%94%20%E8%AE%B0%E5%BF%86%E6%98%9F%E7%90%83.mp4)
 
-**Zhihu CLI capabilities:** Zhihu Hot List.
+7. 📅 RECAP — Yearly / Monthly Recap
 
-**Usage:** Click **SCAN NOW** to save the current Hot List. Once at least two snapshots exist, ranking movements become visible; rapidly rising topics trigger a supernova effect, and **REPLAY** replays saved snapshots.
+   *Function:* Generate a yearly or monthly recap from public creations and favorite data, with support for exporting a shareable long poster.
 
-### 09. 🧰 TOOLS LAB — PDF / PPT
+   *Zhihu CLI capabilities:* User content, user favorites, collection content, Zhida.
 
-**Function:** Provide a visual control panel for Zhihu Open Platform PDF parsing and PPT generation.
+   *Usage:* Choose a year and month, then click "GENERATE". The page builds an activity timeline, keywords, and highlights; "ZHIDA COMMENT" generates a short recap, and "EXPORT LONG POSTER" exports a 1080 × 2480 PNG poster.
 
-**Zhihu CLI capabilities:** PDF file upload, PDF parsing task creation/status queries, PPT generation task creation/status queries.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/7.%20RECAP%20%E2%80%94%20%E5%B9%B4%E5%BA%A6%E6%9C%88%E5%BA%A6%E5%9B%9E%E9%A1%BE.mp4)
 
-**Usage:** In the PDF panel, select a file and click **UPLOAD + PARSE**, then use **CHECK STATUS** to query the result. In the PPT panel, enter a Zhihu answer or column URL, choose the number of slides, click **CREATE PPT**, and use **CHECK STATUS** to query progress.
+8. 💫 LIVE — Hot List Supernova
 
-## 🎬 Demo Videos
+   *Function:* Connect multiple Hot List snapshots into a time series to reveal ranking changes and fast-rising topics.
 
-The `docs/` directory contains a complete demo video for each of the nine experiments:
+   *Zhihu CLI capabilities:* Zhihu Hot List.
 
-| # | Feature | Demo |
-| :--: | --- | :--: |
-| 01 | **EXPLORE** | [▶ Watch demo](./docs/1.%20EXPLORE%20%E2%80%94%20%E5%8F%8C%E5%9F%9F%E6%8E%A2%E7%B4%A2.mp4) |
-| 02 | **COLLIDER** | [▶ Watch demo](./docs/2.%20COLLIDER%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%AF%B9%E6%92%9E.mp4) |
-| 03 | **GRAPH** | [▶ Watch demo](./docs/3.%20GRAPH%20%E2%80%94%20%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1.mp4) |
-| 04 | **ZHIDA ARENA** | [▶ Watch demo](./docs/4.%20ZHIDA%20ARENA%20%E2%80%94%20%E7%9B%B4%E7%AD%94%E9%97%AE%E7%AD%94.mp4) |
-| 05 | **RUNNER** | [▶ Watch demo](./docs/5.%20RUNNER%20%E2%80%94%20%E9%97%AE%E9%A2%98%E8%B7%91%E9%85%B7.mp4) |
-| 06 | **MY MEMORY** | [▶ Watch demo](./docs/6.%20MY%20MEMORY%20%E2%80%94%20%E8%AE%B0%E5%BF%86%E6%98%9F%E7%90%83.mp4) |
-| 07 | **RECAP** | [▶ Watch demo](./docs/7.%20RECAP%20%E2%80%94%20%E5%B9%B4%E5%BA%A6%E6%9C%88%E5%BA%A6%E5%9B%9E%E9%A1%BE.mp4) |
-| 08 | **LIVE** | [▶ Watch demo](./docs/8.%20LIVE%20%E2%80%94%20%E7%83%AD%E6%A6%9C%E8%B6%85%E6%96%B0%E6%98%9F.mp4) |
-| 09 | **TOOLS LAB** | [▶ Watch demo](./docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4) |
+   *Usage:* Click "SCAN NOW" to save the current Hot List. Once at least two snapshots exist, ranking movements become visible; rapidly rising topics trigger a supernova effect, and "REPLAY" replays saved snapshots.
 
-> If GitHub cannot play an MP4 inline, open the video file and use GitHub's raw-file view.
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/8.%20LIVE%20%E2%80%94%20%E7%83%AD%E6%A6%9C%E8%B6%85%E6%96%B0%E6%98%9F.mp4)
+
+9. 🧰 TOOLS LAB — PDF / PPT
+
+   *Function:* Provide a visual control panel for Zhihu Open Platform PDF parsing and PPT generation.
+
+   *Zhihu CLI capabilities:* PDF file upload, PDF parsing task creation/status queries, PPT generation task creation/status queries.
+
+   *Usage:* In the PDF panel, select a file and click "UPLOAD + PARSE", then use "CHECK STATUS" to query the result. In the PPT panel, enter a Zhihu answer or column URL, choose the number of slides, click "CREATE PPT", and use "CHECK STATUS" to query progress.
+
+   *Demo:* [▶ Open / download MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4)
+
 
 ## 🌟 Star History
 
@@ -188,7 +179,7 @@ The `docs/` directory contains a complete demo video for each of the nine experi
 
 ## ☕ Sponsorship
 
-If you enjoy **ZHIHU://VERSE**, or if it has been useful for your learning, research, or development work, you can support future maintenance and improvements through GitHub Sponsors or the appreciation QR codes below.
+If you enjoy ZHIHU://VERSE, or if it has been useful for your learning, research, or development work, you can support future maintenance and improvements through GitHub Sponsors or the appreciation QR codes below.
 
 <div align="center">
 
@@ -200,14 +191,8 @@ If you enjoy **ZHIHU://VERSE**, or if it has been useful for your learning, rese
 | :--: | :--: |
 | <img src="https://raw.githubusercontent.com/CharlesPikachu/musicdl/master/.github/pictures/wechat_reward.jpg" width="260" alt="WeChat Appreciation QR Code" /> | <img src="https://raw.githubusercontent.com/CharlesPikachu/musicdl/master/.github/pictures/alipay_reward.png" width="260" alt="Alipay Appreciation QR Code" /> |
 
-## 📄 License
-
-This project is licensed under the [Apache License 2.0](./LICENSE).
-
----
-
 <div align="center">
 
-**ZHIHU://VERSE · Explore Zhihu as a universe.**
+ZHIHU://VERSE · Explore Zhihu as a universe.
 
 </div>
