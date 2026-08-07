@@ -165,6 +165,22 @@ window.ZHIHU_VERSE_CONFIG = {
 - **使用方式：** PDF 区选择文件后点击 `UPLOAD + PARSE`；PPT 区输入知乎回答或专栏链接后点击 `CREATE PPT`；两类任务都可以使用 `CHECK STATUS` 查询状态。
 - **演示：** [▶ 查看 MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4)
 
+
+
+### Zhihu CLI 能力覆盖
+
+| Experiment     | 知乎搜索 | 全网搜索 |  直答 |  热榜 | 用户内容 / 关注 | 收藏 / 收藏夹 | PDF / PPT |
+| -------------- | :--: | :--: | :-: | :-: | :-------: | :------: | :-------: |
+| 🔭 EXPLORE     |   ✅  |   ✅  |  ✅  |  —  |     —     |     —    |     —     |
+| ⚛️ COLLIDER    |   ✅  |   —  |  ✅  |  —  |     —     |     —    |     —     |
+| 🕸️ GRAPH      |   ✅  |   ✅  |  ✅  |  —  |     —     |     —    |     —     |
+| 🧠 ZHIDA ARENA |   —  |   —  |  ✅  |  —  |     —     |     ✅    |     —     |
+| 🏃 RUNNER      |   ✅  |   —  |  —  |  ✅  |     —     |     —    |     —     |
+| 🪐 MY MEMORY   |   —  |   —  |  ✅  |  —  |     ✅     |     ✅    |     —     |
+| 📅 RECAP       |   —  |   —  |  ✅  |  —  |     ✅     |     ✅    |     —     |
+| 💫 LIVE        |   —  |   —  |  —  |  ✅  |     —     |     —    |     —     |
+| 🧰 TOOLS LAB   |   —  |   —  |  —  |  —  |     —     |     —    |     ✅    |
+
 > 具体接口、参数和开放能力以 [Zhihu CLI 官方文档](https://developer.zhihu.com/docs?key=zhihu_cli) 为准。
 
 ---
@@ -190,3 +206,13 @@ window.ZHIHU_VERSE_CONFIG = {
 | 微信赞赏码 | 支付宝赞赏码 |
 | :---: | :---: |
 | <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/wechat_reward.jpg" width="240" alt="WeChat Appreciation" /> | <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/alipay_reward.png" width="240" alt="Alipay Appreciation" /> |
+
+---
+
+<div align="center">
+
+本项目代码主要依赖 **GPT-5.6 Sol (High)** 生成与辅助迭代，并由人工进行功能验证、调试与维护。
+
+**ZHIHU://VERSE · Explore Zhihu as a universe.**
+
+</div>

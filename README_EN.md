@@ -165,6 +165,22 @@ Set the repository's **Pages Source** to **GitHub Actions** to deploy with the e
 - **How to use it:** Choose a PDF and click `UPLOAD + PARSE`; or enter a Zhihu answer / column URL and click `CREATE PPT`. Use `CHECK STATUS` to query either task.
 - **Demo:** [▶ View MP4](https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/refs/heads/main/docs/9.%20TOOLS%20LAB%20%E2%80%94%20PDF%20PPT.mp4)
 
+
+
+### Zhihu CLI Coverage
+
+| Experiment     | Zhihu Search | Web Search | Zhida | Hot List | User Content / Follows | Favorites / Collections | PDF / PPT |
+| -------------- | :----------: | :--------: | :---: | :------: | :--------------------: | :---------------------: | :-------: |
+| 🔭 EXPLORE     |      ✅       |     ✅      |   ✅   |    —     |           —            |            —            |     —     |
+| ⚛️ COLLIDER    |      ✅       |     —      |   ✅   |    —     |           —            |            —            |     —     |
+| 🕸️ GRAPH      |      ✅       |     ✅      |   ✅   |    —     |           —            |            —            |     —     |
+| 🧠 ZHIDA ARENA |      —       |     —      |   ✅   |    —     |           —            |            ✅            |     —     |
+| 🏃 RUNNER      |      ✅       |     —      |   —   |    ✅     |           —            |            —            |     —     |
+| 🪐 MY MEMORY   |      —       |     —      |   ✅   |    —     |           ✅            |            ✅            |     —     |
+| 📅 RECAP       |      —       |     —      |   ✅   |    —     |           ✅            |            ✅            |     —     |
+| 💫 LIVE        |      —       |     —      |   —   |    ✅     |           —            |            —            |     —     |
+| 🧰 TOOLS LAB   |      —       |     —      |   —   |    —     |           —            |            —            |     ✅     |
+
 > For endpoint definitions, parameters, and currently available capabilities, refer to the [official Zhihu CLI documentation](https://developer.zhihu.com/docs?key=zhihu_cli).
 
 ---
@@ -190,3 +206,13 @@ If ZHIHU://VERSE has been useful for your learning, research, or development, yo
 | WeChat Appreciation | Alipay Appreciation |
 | :---: | :---: |
 | <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/wechat_reward.jpg" width="240" alt="WeChat Appreciation" /> | <img src="https://raw.githubusercontent.com/CharlesPikachu/zhihu-verse/main/.github/pictures/alipay_reward.png" width="240" alt="Alipay Appreciation" /> |
+
+---
+
+<div align="center">
+
+The code in this project is primarily generated and iteratively refined with **GPT-5.6 Sol (High)**, with human verification, debugging, and maintenance.
+
+**ZHIHU://VERSE · Explore Zhihu as a universe.**
+
+</div>
